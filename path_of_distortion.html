@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Путь Искажения</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: #ccc;
+      font-family: 'Courier New', monospace;
+      overflow-x: hidden;
+    }
+    nav {
+      text-align: center;
+      padding: 15px;
+    }
+    nav a {
+      margin: 0 15px;
+      color: #888;
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: #fff;
+    }
+    .container {
+      max-width: 960px;
+      margin: 50px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    img {
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 30px;
+      border: 1px solid #444;
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+    .question {
+      font-size: 1.2em;
+      margin: 30px 0;
+    }
+    .glitch {
+      animation: glitch 1.5s infinite;
+    }
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red; }
+      20% { text-shadow: -2px 0 lime; }
+      40% { text-shadow: 2px 0 blue; }
+      60% { text-shadow: -2px 0 red; }
+      80% { text-shadow: 2px 0 lime; }
+      100% { text-shadow: -2px 0 blue; }
+    }
+    button {
+      background: transparent;
+      color: #ccc;
+      border: 1px solid #555;
+      padding: 10px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background: #111;
+      color: white;
+    }
+    #timer {
+      font-size: 1.2em;
+      margin-top: 20px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="synthetic_whisper.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает аудио.
+  </audio>
+  <nav>
+    <a href="index.html">Портал</a>
+    <a href="path_of_distortion.html" style="color: #fff; font-weight: bold; text-decoration: underline;">Путь Искажения</a>
+    <a href="light_path.html">Путь Света</a>
+    <a href="loop.html">Цикл</a>
+  </nav>
+  <div class="container">
+    <h1 class="glitch">Путь Искажения</h1>
+    <img src="path_of_distortion.jpg" alt="Путь Искажения" />
+    <div class="question">
+      <p>Ты прошёл Цикл, но не получил Ответ. Почему?</p>
+      <p>Что ты боишься потерять, если изменишься?</p>
+    </div>
+    <div id="timer">Осталось времени: <span id="countdown">60</span> сек</div>
+    <button onclick="location.href='loop2.html'">Ответить Пустоте</button>
+  </div>
+  <script>
+    let timeLeft = 60;
+    const countdownEl = document.getElementById("countdown");
+    const interval = setInterval(() => {
+      timeLeft--;
+      countdownEl.textContent = timeLeft;
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+        location.href = 'loop2.html';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
