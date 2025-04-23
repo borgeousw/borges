@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Страж :: Порог</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #ccc;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    img {
+      width: 180px;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
+    .phrase {
+      font-size: 20px;
+      margin-top: 20px;
+    }
+    .continue {
+      margin-top: 40px;
+      padding: 10px 20px;
+      border: 1px solid #444;
+      cursor: pointer;
+      color: #ccc;
+    }
+    .continue:hover {
+      background-color: #111;
+    }
+  </style>
+  <script>
+    function go() {
+      window.location.href = 'ritual/начало.html';
+    }
+  </script>
+</head>
+<body>
+  <img src="logo.png" alt="Страж">
+  <div class="phrase">Ты подошёл к Порогу.<br>Впереди Путь. Позади — только Пустота.</div>
+  <div class="continue" onclick="go()">войти</div>
+</body>
+</html>
