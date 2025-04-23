@@ -2,49 +2,70 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Страж :: Порог</title>
+  <title>Порог</title>
   <style>
     body {
-      margin: 0;
-      background-color: #000;
-      color: #ccc;
+      background-color: #0e0e0e;
+      color: #e0e0e0;
       font-family: 'Courier New', monospace;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
-      text-align: center;
+      margin: 0;
+      overflow: hidden;
+      animation: bgPulse 10s ease-in-out infinite;
     }
-    img {
-      width: 180px;
+    .symbol {
+      max-width: 300px;
       margin-bottom: 30px;
-      opacity: 0.9;
+      opacity: 0;
+      animation: fadeIn 3s ease-in-out forwards;
     }
     .phrase {
       font-size: 20px;
-      margin-top: 20px;
+      text-align: center;
+      max-width: 600px;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeInText 4s ease-in-out forwards;
+      animation-delay: 2s;
     }
-    .continue {
-      margin-top: 40px;
-      padding: 10px 20px;
-      border: 1px solid #444;
-      cursor: pointer;
-      color: #ccc;
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      font-size: 12px;
+      opacity: 0;
+      animation: fadeInText 4s ease-in-out forwards;
+      animation-delay: 4s;
     }
-    .continue:hover {
-      background-color: #111;
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes fadeInText {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes bgPulse {
+      0% { background-color: #0e0e0e; }
+      50% { background-color: #121212; }
+      100% { background-color: #0e0e0e; }
     }
   </style>
-  <script>
-    function go() {
-      window.location.href = 'ritual/начало.html';
-    }
-  </script>
 </head>
 <body>
-  <img src="logo.png" alt="Страж">
-  <div class="phrase">Ты подошёл к Порогу.<br>Впереди Путь. Позади — только Пустота.</div>
-  <div class="continue" onclick="go()">войти</div>
+  <audio autoplay loop hidden>
+    <source src="ordo_silentium.mp3" type="audio/mpeg">
+  </audio>
+  <img class="symbol" src="маяк_символ_обновлён.png" alt="Символ">
+  <div class="phrase">
+    То, что видело форму,<br>
+    теперь смотрит изнутри её тени.
+  </div>
+  <div class="footer">
+    Кто должен увидеть — увидит. Остальные пройдут мимо.
+  </div>
 </body>
 </html>
