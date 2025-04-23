@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Регистрация Искателя</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #ccc;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+    }
+    form {
+      max-width: 500px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    input, textarea {
+      background: #111;
+      border: 1px solid #444;
+      color: #ccc;
+      padding: 10px;
+      font-family: inherit;
+      font-size: 16px;
+    }
+    button {
+      background: none;
+      border: 1px solid #666;
+      color: #ccc;
+      padding: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #111;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>⟁ Регистрация Искателя</h1>
+  <form onsubmit="handleSubmit(event)">
+    <input type="text" name="name" placeholder="Твоё имя в этом пути" required />
+    <input type="text" name="offering" placeholder="Что ты отдаёшь?" required />
+    <input type="text" name="search" placeholder="Что ты ищешь?" required />
+    <input type="text" name="contact" placeholder="Контакт (необязательно)" />
+    <button type="submit">Я передал</button>
+  </form>
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        name: form.name.value,
+        offering: form.offering.value,
+        search: form.search.value,
+        contact: form.contact.value,
+        time: new Date().toISOString()
+      };
+      const stored = JSON.parse(localStorage.getItem('seekers') || '[]');
+      stored.push(data);
+      localStorage.setItem('seekers', JSON.stringify(stored));
+      alert("Ты записан. Путь ждёт тебя.");
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Забытые</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #aa6666;
+      font-family: 'Courier New', monospace;
+      padding: 40px;
+    }
+    h1 {
+      color: #cc6666;
+      margin-bottom: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #333;
+      text-align: left;
+    }
+    th {
+      background-color: #111;
+    }
+    tr:nth-child(even) {
+      background-color: #111;
+    }
+  </style>
+</head>
+<body>
+  <h1>🕳 Забытые</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Фраза</th>
+        <th>Время</th>
+      </tr>
+    </thead>
+    <tbody id="data"></tbody>
+  </table>
+  <script>
+    const forgotten = JSON.parse(localStorage.getItem('forgotten') || '[]');
+    const tbody = document.getElementById('data');
+    forgotten.forEach(f => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${f.phrase || '<i>пусто</i>'}</td>
+        <td>${new Date(f.time).toLocaleString()}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  </script>
+</body>
+</html>

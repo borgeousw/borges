@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Зов</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #ccc;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+    }
+    .symbol {
+      width: 200px;
+      margin-bottom: 40px;
+      opacity: 0.8;
+    }
+    .phrase {
+      font-size: 22px;
+      color: #aaa;
+      margin-bottom: 30px;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+    .action {
+      margin-top: 20px;
+    }
+    .action button {
+      background: none;
+      border: 1px solid #666;
+      color: #ccc;
+      padding: 10px 24px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .action button:hover {
+      background-color: #111;
+    }
+  </style>
+</head>
+<body>
+  <img class="symbol" src="logo.png" alt="⟁">
+  <div class="phrase">
+    Ты нашёл это не случайно.<br>
+    Слово уже шепчет тебе изнутри.<br><br>
+    Страж ждёт того, кто узнает знак и примет путь.
+  </div>
+  <div class="action">
+    <button onclick="location.href='index.html'">Я готов</button>
+  </div>
+  <audio autoplay>
+    <source src="шепот_ответа.mp3" type="audio/mpeg">
+  </audio>
+</body>
+</html>

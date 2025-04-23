@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Снова здесь</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #222;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      text-align: center;
+    }
+    .msg {
+      font-size: 18px;
+      max-width: 600px;
+      animation: flicker 8s ease-in-out infinite alternate;
+    }
+    @keyframes flicker {
+      0% { opacity: 0.1; }
+      100% { opacity: 1; }
+    }
+  </style>
+  <script>
+    setTimeout(() => {
+      window.location.href = 'loop.html';
+    }, 10000);
+  </script>
+</head>
+<body>
+  <div class="msg">
+    Всё по кругу. Всё то же.<br>
+    Ты ошибся, и теперь ты слышишь только себя.<br><br>
+    (или это кто-то другой?)
+  </div>
+</body>
+</html>

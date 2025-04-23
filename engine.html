@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Ritual Engine (Visual)</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #ccc;
+      font-family: 'Courier New', monospace;
+    }
+    #graph {
+      width: 100vw;
+      height: 100vh;
+    }
+    #info {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: #111;
+      padding: 16px;
+      border: 1px solid #444;
+      max-width: 300px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="graph"></div>
+  <div id="info"></div>
+  <script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <script>
+    let ritualData = {};
+
+    fetch('circles_structure.json')
+      .then(res => res.json())
+      .then(data => {
+        ritualData = data;
+        const nodes = new vis.DataSet(
+          data.circles.map(c => ({ id: c.id, label: c.name, color: c.entry ? '#66ffcc' : '#444' }))
+        );
+
+        const edges = new vis.DataSet(
+          data.circles.flatMap(c => c.next.map(n => ({ from: c.id, to: n })))
+        );
+
+        const container = document.getElementById('graph');
+        const network = new vis.Network(container, { nodes, edges }, {
+          nodes: {
+            shape: 'box',
+            color: {
+              background: '#111',
+              border: '#666',
+              highlight: {
+                background: '#222',
+                border: '#66ffcc'
+              },
+              hover: {
+                background: '#333',
+                border: '#66ffcc'
+              }
+            },
+            font: { color: '#ccc' }
+          },
+          edges: {
+            arrows: { to: { enabled: true } },
+            color: '#888'
+          },
+          physics: {
+            enabled: true,
+            stabilization: true
+          }
+        });
+
+        network.on("click", function (params) {
+          if (params.nodes.length) {
+            const id = params.nodes[0];
+            const circle = ritualData.circles.find(c => c.id === id);
+            if (circle) {
+              const info = document.getElementById("info");
+              info.style.display = 'block';
+              info.innerHTML = `<strong>${circle.name}</strong><br><br>${circle.text}`;
+            }
+          }
+        });
+      });
+  </script>
+</body>
+</html>

@@ -1,71 +1,64 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Порог</title>
+  <title>Ritual Engine</title>
   <style>
-    body {
-      background-color: #0e0e0e;
-      color: #e0e0e0;
-      font-family: 'Courier New', monospace;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+    html, body {
       margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #000;
       overflow: hidden;
-      animation: bgPulse 10s ease-in-out infinite;
     }
-    .symbol {
-      max-width: 300px;
-      margin-bottom: 30px;
-      opacity: 0;
-      animation: fadeIn 3s ease-in-out forwards;
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: 'Courier New', monospace;
+      color: #ccc;
+    }
+    #eye {
+      width: 300px;
+      height: 300px;
+      background: url('logo.png') center/contain no-repeat;
+      animation: pulse 8s infinite ease-in-out;
     }
     .phrase {
+      margin-top: 30px;
       font-size: 20px;
-      text-align: center;
-      max-width: 600px;
-      line-height: 1.6;
       opacity: 0;
-      animation: fadeInText 4s ease-in-out forwards;
-      animation-delay: 2s;
-    }
-    .footer {
-      position: absolute;
-      bottom: 20px;
-      font-size: 12px;
-      opacity: 0;
-      animation: fadeInText 4s ease-in-out forwards;
-      animation-delay: 4s;
+      animation: fadeIn 6s 2s ease-in forwards;
     }
     @keyframes fadeIn {
-      0% { opacity: 0; transform: scale(0.95); }
-      100% { opacity: 1; transform: scale(1); }
+      to {
+        opacity: 1;
+      }
     }
-    @keyframes fadeInText {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-    @keyframes bgPulse {
-      0% { background-color: #0e0e0e; }
-      50% { background-color: #121212; }
-      100% { background-color: #0e0e0e; }
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.02);
+      }
     }
   </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.body.addEventListener('click', () => {
+        window.location.href = 'call.html';
+      });
+    });
+  </script>
 </head>
 <body>
-  <audio autoplay loop hidden>
-    <source src="ordo_silentium.mp3" type="audio/mpeg">
+  <div id="eye"></div>
+  <div class="phrase">Пустота не забывает</div>
+  <audio autoplay loop>
+    <source src="шепот_ответа.mp3" type="audio/mpeg">
   </audio>
-  <img class="symbol" src="маяк_символ_обновлён.png" alt="Символ">
-  <div class="phrase">
-    То, что видело форму,<br>
-    теперь смотрит изнутри её тени.
-  </div>
-  <div class="footer">
-    Кто должен увидеть — увидит. Остальные пройдут мимо.
-  </div>
 </body>
 </html>

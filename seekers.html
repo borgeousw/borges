@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Искатели</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #ccc;
+      font-family: 'Courier New', monospace;
+      padding: 40px;
+    }
+    h1 {
+      color: #66ffcc;
+      margin-bottom: 30px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #444;
+      text-align: left;
+    }
+    th {
+      background-color: #111;
+    }
+    tr:nth-child(even) {
+      background-color: #111;
+    }
+  </style>
+</head>
+<body>
+  <h1>⟁ Искатели</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Имя</th>
+        <th>Отдано</th>
+        <th>Ищет</th>
+        <th>Контакт</th>
+        <th>Время</th>
+      </tr>
+    </thead>
+    <tbody id="data"></tbody>
+  </table>
+  <script>
+    const seekers = JSON.parse(localStorage.getItem('seekers') || '[]');
+    const tbody = document.getElementById('data');
+    seekers.forEach(s => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${s.name}</td>
+        <td>${s.offering}</td>
+        <td>${s.search}</td>
+        <td>${s.contact}</td>
+        <td>${new Date(s.time).toLocaleString()}</td>
+      `;
+      tbody.appendChild(row);
+    });
+  </script>
+</body>
+</html>

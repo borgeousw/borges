@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Панель Вершителя</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #66ffcc;
+      font-family: 'Courier New', monospace;
+      padding: 40px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 28px;
+    }
+    .block {
+      border: 1px solid #444;
+      padding: 20px;
+      margin-bottom: 30px;
+      background-color: #111;
+    }
+    .block h3 {
+      margin-top: 0;
+    }
+    label {
+      display: block;
+      margin: 10px 0;
+    }
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: none;
+      border: 1px solid #666;
+      color: #ccc;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #111;
+    }
+  </style>
+  <script>
+    function applyVerdict() {
+      localStorage.setItem('ritual_symbol', document.getElementById('symbol').value);
+      localStorage.setItem('ritual_phrase', document.getElementById('phrase').value);
+      if (document.getElementById('disable_circle').checked) {
+        localStorage.setItem('disable_circle', 'offering');
+      } else {
+        localStorage.removeItem('disable_circle');
+      }
+      if (document.getElementById('trap_mode').checked) {
+        localStorage.setItem('ritual_trap', 'true');
+      } else {
+        localStorage.removeItem('ritual_trap');
+      }
+      alert('Приговор применён. Путь изменён.');
+    }
+  </script>
+</head>
+<body>
+  <h1>✴ Панель Вершителя</h1>
+
+  <div class="block">
+    <h3>Изменить символ круга</h3>
+    <input id="symbol" type="text" value="⟁" placeholder="Новый символ..." />
+  </div>
+
+  <div class="block">
+    <h3>Переписать финальную фразу</h3>
+    <input id="phrase" type="text" value="Теперь ты носишь искру. Не теряй её." />
+  </div>
+
+  <div class="block">
+    <h3>Отключить круг "Отдача"</h3>
+    <label><input type="checkbox" id="disable_circle"> Сделать недоступным</label>
+  </div>
+
+  <div class="block">
+    <h3>Режим Ловушки</h3>
+    <label><input type="checkbox" id="trap_mode"> Все входящие попадают в цикл</label>
+  </div>
+
+  <button onclick="applyVerdict()">ПРИМЕНИТЬ ПРИГОВОР</button>
+</body>
+</html>
